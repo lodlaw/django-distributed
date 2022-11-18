@@ -10,21 +10,12 @@ KEY_PREFIX = 'django_distributed.distributed_router.'
 
 class CachedRouter(DistributedRouter):
 
-    def db_for_write(self, model, **hints):
-        if model not in settings.IGNORED_REPLICA_MODELS:
-            self.update_cache(model)
-
-        super().db_for_write(model, **hints)
-
     def update_cache(self, model):
         cache_key = self.get_cache_key(model)
         if cache_key:
             cache.set(cache_key, datetime.utcnow())
 
     def is_recently_updated(self, model):
-        if model in settings.IGNORED_REPLICA_MODELS:
-            return False
-
         cache_key = self.get_cache_key(model)
         if cache_key:
             time_before = cache.get(cache_key)

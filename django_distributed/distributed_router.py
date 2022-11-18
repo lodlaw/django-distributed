@@ -1,6 +1,3 @@
-from django.conf import settings
-
-
 class DistributedRouter:
 
     def db_for_read(self, model, **hints):
@@ -17,11 +14,11 @@ class DistributedRouter:
 
     @property
     def follower_db(self):
-        return settings.DATABASES['default']
+        return 'replica'
 
     @property
     def leader_db(self):
-        return settings.DATABASES['replica']
+        return 'default'
 
     def allow_relation(self):
         """ Whether to enable relations cross database """
