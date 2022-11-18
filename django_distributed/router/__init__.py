@@ -1,0 +1,1 @@
+from django_distributed.router.cached_session_router import SessionCachedRouter
