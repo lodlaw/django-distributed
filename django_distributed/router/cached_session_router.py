@@ -18,6 +18,11 @@ class CachedRouter(DistributedRouter):
         if cache_key:
             cache.set(cache_key, datetime.utcnow())
 
+    def db_for_write(self, model, **hints):
+        self.update_cache(model)
+
+        return super().db_for_write(model, **hints)
+
     def is_recently_updated(self, model):
         """ Returns true if the cache store is recently updated based on a key, else false """
         cache_key = self.get_cache_key(model)
