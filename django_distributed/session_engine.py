@@ -29,7 +29,7 @@ class SessionStore(DBStore):
                     super().save(must_create)
                     return
                 except UpdateError:
-                    pass
+                    continue
 
                 self.flush()
                 raise
