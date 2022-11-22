@@ -7,7 +7,7 @@ setup(name='django_distributed',
       author='Anh Pham',
       author_email='anh.pham@lodlaw.com',
       license='MIT',
-      packages=['django_distributed'],
+      packages=['django_distributed', 'django_distributed.router'],
       install_requires=[
           'django-crum',
           'django',

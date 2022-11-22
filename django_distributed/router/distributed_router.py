@@ -15,7 +15,7 @@ class DistributedRouter:
 
     def db_for_write(self, model, **hints):
         # always return the leader database for write
-        return self.leader_db
+        return settings.LEADER_DATABASE
 
     def is_recently_updated(self, model):
         # to be implemented in base class
@@ -23,20 +23,14 @@ class DistributedRouter:
 
     @property
     def follower_db(self):
-        """ Gets a random read database from the list, if not provided, return a default """
-        if settings.REPLICA_DATABASES:
-            return random.choice(settings.REPLICA_DATABASES)
-
-        return 'replica'
+        """ Gets a random read database from the list """
+        return random.choice(settings.REPLICA_DATABASES)
 
     @property
     def leader_db(self):
-        """ Gets a leader database from settings, if not provided, return default """
-        if settings.LEADER_DATABASE:
-            return settings.LEADER_DATABASE
+        """ Gets a leader database from settings """
+        return settings.LEADER_DATABASE
 
-        return 'default'
-
-    def allow_relation(self):
+    def allow_relation(self, obj1, obj2, **hints):
         """ Whether to enable relations cross database """
         return True

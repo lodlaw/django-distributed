@@ -1,1 +1,1 @@
-from django_distributed.router import *
+from django_distributed.router import SessionCachedRouter
