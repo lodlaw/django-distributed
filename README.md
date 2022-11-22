@@ -2,8 +2,8 @@
 A multi database setup for Django.
 
 Tested with www.lodlaw.com, our setup consists of:
-- one write database based in Australia corresponding to an Australian kubernetes cluser
-- one read database based in Europe corresponding to an European kubernetes cluster
+- one write database based in Australia corresponding to an Australian cluser
+- one read database based in Europe corresponding to an European cluster
 
 ## Installing
 `pip install django-distributed`
