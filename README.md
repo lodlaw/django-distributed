@@ -46,7 +46,7 @@ SESSION_ENGINE = 'django_distributed.session_engine'
 #### Session engine explanation
 This session engine is using both cache store and database store. 
 
-Because replication is not fast enough, a session written in the leader database will not appear in the replicas right away. Hence the user might get kicked out after logging in because the session is there in the read replica. Of course, we could do R/W all on the master database, but it would be slow as our R and W databases are located far away from each other.
+Because replication is not fast enough, a session written in the leader database will not appear in the replicas right away. Hence, the user might get kicked out after logging in, as the session is not yet replicated. Of course, we could do R/W all on the master database, but it would be slow, since our R and W databases are located far away from each other.
 
-Hence we have created this session engine, it will first add the session to the cache first, in our case, memcached. Then it will update the database. Same for reading session, cache store goes first then database store. Nevertheless, what is different here from the Django `cached_db` is the write operation, it is offloaded to another thread.
+Therefore, we have created this session engine, it will first add the session to the cache first, in our case, memcached. Then it will update the database. Same for reading session, cache store goes first then database store. Nevertheless, what is different here from the Django `cached_db` is the write operation, it is offloaded to another thread.
 
