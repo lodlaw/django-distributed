@@ -11,7 +11,7 @@ Tested with www.lodlaw.com, our setup consists of:
 ## Requirements
 
 ### Required configs
-In `settings.py` of Django, you need to define the following variables for the slave configuration:
+In `settings.py` of Django, you need to define the following variables for the follower configuration:
 
 | Variable         | Type      | Description                                                   |
 |------------------|-----------|---------------------------------------------------------------|
