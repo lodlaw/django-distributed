@@ -24,7 +24,7 @@ class CachedRouter(DistributedRouter):
 
         if cache_key:
             time_before = cache.get(cache_key)
-            if time_before and (datetime.utcnow() - time_before).total_seconds() < settings.MULTIDB_PINNING_SECONDS:
+            if time_before and (datetime.utcnow() - time_before).total_seconds() < settings.REPLICATION_LAG:
                 return True
 
     def get_cache_key(self, model):
